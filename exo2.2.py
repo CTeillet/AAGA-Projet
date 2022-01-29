@@ -98,20 +98,21 @@ for i in range(4*2) :
  
 #print(tree[1])
 
-
-def phi(tree, i) :
-    if tree[i].left_child == -1 and tree[i].right_child == -1 :
-        return ""
-    return "("+ phi(tree, tree[i].left_child) + phi(tree, tree[i].right_child)+")"
-phi1 = phi(tree1, 0)
-print(phi1)
-phi2 = phi(tree2, 0)
-print(phi2)
-
-print("t1 = t2 ? ", phi1 == phi2)
+def phi(tree):
+    def phi_aux(tree, i) :
+        if tree[i].left_child == -1 and tree[i].right_child == -1 :
+            return ""
+        return "(" + phi_aux(tree, tree[i].left_child) + ")" + phi_aux(tree, tree[i].right_child)
+    return phi_aux(tree, 0)
 
 
-# for i in range(2, n + 1):
+
+def equals(a1, a2) :
+    return phi(a1) == phi(a2)
+
+print("t1 = t2 ? ", equals(tree1, tree2))
+
+
 
 def gen_all_list(n) :
     return gen_aux(n, 2, [[]])
@@ -125,6 +126,12 @@ def gen_aux(n, k, res):
         return res2
     return gen_aux(n, k+1, res2)
 
-print(gen_all_list(3))
+def couverture(n) :
+    lists = gen_all_list(n)
+    trees = dict()
+    for l in lists :
+        tree = [Node() for i in range(2 * N + 1)]
+        s = phi(growing_tree_list(tree, l))
+        
 
 
