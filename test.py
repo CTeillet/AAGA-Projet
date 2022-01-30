@@ -3,9 +3,9 @@ from pytest import list_of, nonempty_list_of, dict_of, Generator
 
 import exo3
 import exo2_1
-from ternary_trie import fusion
 
 
+# Normal que cela ne marche pas car on vérifie si une liste aléatoire est un tas binaire min
 @pytest.mark.randomize(l=list_of(int, min_items=1, max_items=10), min_num=0, ncalls=10)
 def test_list_is_min_heap(l):
     assert exo3.prop_is_min_heap(l)
