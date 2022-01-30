@@ -18,11 +18,8 @@ def gen_arbre_tern(titre, nb_words):
 
 def fusion(titre1, titre2, nb_words):
     arbre1 = gen_arbre_tern(titre1, nb_words)
-    print(find_words(arbre1))
-    # print(arbre1.affiche())
     arbre2 = gen_arbre_tern(titre2, nb_words)
-    arbre3 = ternary_trie.fusion(arbre1, arbre2)
-    return arbre3
+    return ternary_trie.fusion(arbre1, arbre2)
 
 
 def find_words(arbre):
@@ -53,6 +50,20 @@ def is_sorted(liste):
     return True
 
 
+def gen_arbre_tern_liste_exo3(liste):
+    arbre = ternary_trie.gener_feuille()
+    for word in liste:
+        arbre = ternary_trie.insert(arbre, word)
+    return arbre
+
+
+def fusion_exo3(liste1, liste2):
+    arbre1 = gen_arbre_tern_liste_exo3(liste1)
+    arbre2 = gen_arbre_tern_liste_exo3(liste2)
+    return ternary_trie.fusion(arbre1, arbre2)
+
+
+# Permet de tester le bon fonctionnement de la fonction fusion
 abr = find_words(fusion('romeo_juliet', '1henryiv', 15))
 print(abr)
 print(is_sorted(abr))

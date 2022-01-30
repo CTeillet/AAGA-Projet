@@ -145,7 +145,7 @@ def couverture(n):
     return trees
 
 
-print(couverture(3)) #Max
+# print(couverture(3)) #Max
 class AB :
     def __init__(self, tag,  *, father = None, right = None, left = None) :
         self.father = father
@@ -153,13 +153,17 @@ class AB :
         self.left = left
         self.tag = tag
 
-    def isLeaf(self) :
-        return self.left == None and self.right == None
+    def isLeaf(self):
+        return self.left is None and self.right is None
 
     def __str__(self):
-        return str(self.tag) + " (" + str(self.left) + ") (" + str(self.right) + ")"
+        if self.isLeaf():
+            return ""
+        else:
+            return "(" + str(self.left) + ")" + str(self.right)
 
-def algoRemy(n) :
+
+def algoRemy(n):
     nb_intern_node = 0
     arbre = AB(1)
     all_nodes = [arbre]
@@ -179,4 +183,5 @@ def algoRemy(n) :
         nb_intern_node += 1
     return all_nodes
 
-print(algoRemy(3))
+
+print(algoRemy(4)[0])
