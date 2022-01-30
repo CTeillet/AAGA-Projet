@@ -120,14 +120,17 @@ def gen_all_list(n):
     return gen_aux(n, 2, [[]])
 
 
-def gen_aux(n, k, res):
+def gen_aux(n, i, res):
     res2 = []
-    for e in res:
-        for i in range(0, k):
-            res2.append(e + [i])
-    if (k == n):
+    # Parcours des liste précédemment construite
+    for l in res:
+        # Parcour de toute les valeurs possibles de number a cette iteration 
+        for number in range(0, i):
+            # ajout de toutes les combinaisons de (list x valeur)  dans la liste résultat
+            res2.append(l + [number])
+    if (i == n):
         return res2
-    return gen_aux(n, k + 1, res2)
+    return gen_aux(n, i + 1, res2)
 
 
 def couverture(n):
