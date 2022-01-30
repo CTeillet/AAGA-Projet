@@ -11,7 +11,6 @@ def gen_arbre_tern(titre, nb_words):
 
         arbre = ternary_trie.gener_feuille()
         for word in res_words:
-            print(word)
             arbre = ternary_trie.insert(arbre, word)
     return arbre
 

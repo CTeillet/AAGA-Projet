@@ -77,7 +77,6 @@ def growing_tree_list(tree, n, l):
 
     for i in range(2, n + 1):
         number = l[i - 2]
-        # print(i - 1, number + i - 1)
         change_leaves(tree, i - 1, number + i - 1)
         tree[i - 1].right_child = 2 * i - 1
         tree[i - 1].left_child = 2 * i
@@ -90,15 +89,7 @@ def growing_tree_list(tree, n, l):
         tree[2 * i].left_child = -1
 
 
-l = gen_list_tree(2)
-growing_tree_list(tree1, 2, l)
-growing_tree(tree2, 2)
 
-for i in range(4 * 2):
-    print(tree1[i])
-
-
-# print(tree[1])
 
 def phi(tree):
     def phi_aux(tree, i):
@@ -113,11 +104,8 @@ def equals(a1, a2):
     return phi(a1) == phi(a2)
 
 
-print("t1 = t2 ? ", equals(tree1, tree2))
-
-
 def gen_all_list(n):
-    return gen_aux(n, 2, [[]])
+    return gen_aux(n+1, 2, [[]])
 
 
 def gen_aux(n, i, res):
@@ -148,7 +136,8 @@ def couverture(n):
     return trees
 
 
-# print(couverture(3)) #Max
+
+
 class AB :
     def __init__(self, tag,  *, father = None, right = None, left = None) :
         self.father = father
@@ -185,6 +174,32 @@ def algoRemy(n):
             nouveau.father = f
         nb_intern_node += 1
     return all_nodes
+
+
+
+
+print("lancement de growing_trie")
+growing_tree(tree1, n)
+for i in range(n):
+    print(tree1[i])
+
+print("\nNous sommes en mesure de generer la liste de tous les tirages possibles. Par exemple pour 3 tirages :")   
+all_list3 = gen_all_list(3)
+print(all_list3)
+
+print("\ngrowing_tree_list de taille 3: ")
+growing_tree_list(tree1, 3, all_list3[0])
+for i in range(n):
+    print(tree1[i])
+
+print("\nphi cette arbre")
+phi(tree1)
+print("\nequals avec un arbre egale")
+growing_tree_list(tree2, 3, all_list3[0])
+print(equals(tree1, tree2))
+
+print("\nMontrons que growing_tree n'est pas uniforme avec la couverture des arbre de taille 3")
+print(couverture(3)) 
 
 
 print(algoRemy(4)[0])
