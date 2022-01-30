@@ -31,7 +31,6 @@ def find_words_aux(arbre, s_temp, res):
     if arbre.is_feuille():
         return res
     
-    
     if arbre.val == 0:
         # Ajout du nouveau mot a la liste résultat
         s_temp2 = s_temp + arbre.cle
@@ -56,19 +55,6 @@ def is_sorted(liste):
         if liste[i] > liste[i + 1]:
             return False
     return True
-
-
-def gen_arbre_tern_liste_exo3(liste):
-    arbre = ternary_trie.gener_feuille()
-    for word in liste:
-        arbre = ternary_trie.insert(arbre, word)
-    return arbre
-
-
-def fusion_exo3(liste1, liste2):
-    arbre1 = gen_arbre_tern_liste_exo3(liste1)
-    arbre2 = gen_arbre_tern_liste_exo3(liste2)
-    return ternary_trie.fusion(arbre1, arbre2)
 
 
 # Permet de tester le bon fonctionnement de la fonction fusion

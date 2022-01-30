@@ -1,3 +1,4 @@
+import ternary_trie
 
 
 def getLeftChild(i):
@@ -58,3 +59,16 @@ def prop_is_min_heap(bh):
         if bh[getFather(i)] > bh[i]:
             return False
     return True
+
+
+def gen_arbre_tern_liste_exo3(liste):
+    arbre = ternary_trie.gener_feuille()
+    for word in liste:
+        arbre = ternary_trie.insert(arbre, word)
+    return arbre
+
+
+def fusion_exo3(liste1, liste2):
+    arbre1 = gen_arbre_tern_liste_exo3(liste1)
+    arbre2 = gen_arbre_tern_liste_exo3(liste2)
+    return ternary_trie.fusion(arbre1, arbre2)
