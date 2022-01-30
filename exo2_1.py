@@ -27,20 +27,28 @@ def find_words(arbre):
 
 
 def find_words_aux(arbre, s_temp, res):
+
     if arbre.is_feuille():
         return res
-    else:
-        if arbre.val == 0:
+    
+    
+    if arbre.val == 0:
+        # Ajout du nouveau mot a la liste résultat
+        s_temp2 = s_temp + arbre.cle
+        res.append(s_temp2)
+
+    # Parcours prefixe de l'arbre
+    for i in range(len(arbre.fils)):
+        fils = arbre.fils[i]
+        if i == 1:
+            # Ajout de la lettre au mot pour le fils du milieu
             s_temp2 = s_temp + arbre.cle
-            res.append(s_temp2)
-        for i in range(len(arbre.fils)):
-            fils = arbre.fils[i]
-            if i == 1:
-                s_temp2 = s_temp + arbre.cle
-                res = find_words_aux(fils, s_temp2, res)
-            else:
-                res = find_words_aux(fils, s_temp, res)
-        return res
+            # Appel récursif dans le sous arbre 
+            res = find_words_aux(fils, s_temp2, res)
+        else:
+            # Appel récursif dans le sous arbre 
+            res = find_words_aux(fils, s_temp, res)
+    return res
 
 
 def is_sorted(liste):
