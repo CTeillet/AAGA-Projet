@@ -59,5 +59,7 @@ def is_sorted(liste):
 
 # Permet de tester le bon fonctionnement de la fonction fusion
 abr = find_words(fusion('romeo_juliet', '1henryiv', 15))
+print("Après avoir lancer la recherche des mots on obtient : ")
 print(abr)
+print("Cette liste est-trie ?")
 print(is_sorted(abr))
